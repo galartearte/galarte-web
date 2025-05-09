@@ -2,11 +2,12 @@
 import { API_URL } from "@const/consts";
 import type { IArtist } from "../types/artist";
 import type { ServiceResponse } from "../types/serviceResponse";
+import { artists } from "@utils/data";
 
-const responseArtist = await fetch(`${API_URL}/artists`);
+// const responseArtist = await fetch(`${API_URL}/artists`);
 
-const { data: artists }: ServiceResponse<IArtist[]> =
-  await responseArtist.json();
+// const { data: artists }: ServiceResponse<IArtist[]> =
+//   await responseArtist.json();
 
 if (!artists) {
   return Astro.redirect("/404");

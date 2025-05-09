@@ -6,10 +6,12 @@ import Layout from "@layouts/Layout.astro";
 import type { IArtist } from "../types/artist";
 import type { ServiceResponse } from "../types/serviceResponse";
 
-const responseArtist = await fetch(`${API_URL}/artists?limit=4`);
+// const responseArtist = await fetch(`${API_URL}/artists?limit=4`);
 
-const { data: artists }: ServiceResponse<IArtist[]> =
-  await responseArtist.json();
+// const { data: artists }: ServiceResponse<IArtist[]> =
+//   await responseArtist.json();
+
+import { artists } from "@utils/data";
 
 if (!artists) return Astro.redirect("/404");
 ---

@@ -5,18 +5,23 @@ import Layout from "@layouts/Layout.astro";
 import type { IArtist } from "../../types/artist";
 import type { IArtwork } from "../../types/artwork";
 import type { ServiceResponse } from "../../types/serviceResponse";
+import { getArtistById, getArtworkById } from "@utils/functions";
 
 const { item } = Astro.params;
 
-const responseArtwork = await fetch(`${API_URL}/artworks/${item}`);
-const { data: itemInfo }: ServiceResponse<IArtwork> =
-  await responseArtwork.json();
+// const responseArtwork = await fetch(`${API_URL}/artworks/${item}`);
+// const { data: itemInfo }: ServiceResponse<IArtwork> =
+//   await responseArtwork.json();
+
+const itemInfo: IArtwork = getArtworkById(item);
 
 if (!itemInfo) {
   return Astro.redirect("/404");
 }
-const responseArtist = await fetch(`${API_URL}/artists/${itemInfo.artistId}`);
-const { data: artist }: ServiceResponse<IArtist> = await responseArtist.json();
+// const responseArtist = await fetch(`${API_URL}/artists/${itemInfo.artistId}`);
+// const { data: artist }: ServiceResponse<IArtist> = await responseArtist.json();
+
+const artist : IArtist = getArtistById(itemInfo.artistId);
 ---
 
 <Layout title={`${itemInfo.name}`}>

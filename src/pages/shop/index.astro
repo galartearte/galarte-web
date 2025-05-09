@@ -2,17 +2,20 @@
 import Artwork from "@components/Artwork.astro";
 import { API_URL } from "@const/consts";
 import Layout from "@layouts/Layout.astro";
+import { getArtworkByName, getAllArtworks } from "@utils/functions";
 import { type IArtwork } from "src/types/artwork";
 import { type ServiceResponse } from "src/types/serviceResponse";
 
 const search = Astro.url.searchParams.get("search") || "";
 
-const url = search
-  ? `${API_URL}/artworks/search/${search}`
-  : `${API_URL}/artworks`;
+// const url = search
+//   ? `${API_URL}/artworks/search/${search}`
+//   : `${API_URL}/artworks`;
 
-const response = await fetch(url);
-const { data: artworks }: ServiceResponse<IArtwork[]> = await response.json();
+// const response = await fetch(url);
+// const { data: artworks }: ServiceResponse<IArtwork[]> = await response.json();
+
+const artworks: IArtwork[] = search ? getArtworkByName(search) : getAllArtworks();
 ---
 
 <Layout title="Galarte Web">

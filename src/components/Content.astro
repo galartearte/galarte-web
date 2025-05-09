@@ -2,9 +2,12 @@
 import { API_URL } from "@const/consts";
 import type { IArtwork } from "../types/artwork";
 import type { ServiceResponse } from "../types/serviceResponse";
+import { getRandomArtworks } from "../utils/functions";
 
-const response = await fetch(`${API_URL}/artworks/random`);
-const { data: artworks }: ServiceResponse<IArtwork[]> = await response.json();
+// const response = await fetch(`${API_URL}/artworks/random`);
+// const { data: artworks }: ServiceResponse<IArtwork[]> = await response.json();
+
+const artworks: IArtwork[] = getRandomArtworks();
 
 // Clases comunes
 const commonPanelClasses =
@@ -41,23 +44,13 @@ const mobileImageClasses = "w-5/6 md:w-2/5 object-cover";
       data-image-id={artworks[0].id}
       src={artworks[0].image}
       alt={`Image of ${artworks[0].name}`}
-      class:list={[
-        "artist-image",
-        baseImageClasses,
-        mobileImageClasses,
-        "ml-4 md:hidden",
-      ]}
+      class:list={["artist-image", baseImageClasses, mobileImageClasses, "ml-4 md:hidden"]}
     />
     <img
       data-image-id={artworks[1].id}
       src={artworks[1].image}
       alt={`Image of ${artworks[1].name}`}
-      class:list={[
-        "artist-image",
-        baseImageClasses,
-        mobileImageClasses,
-        "object-cover md:hidden",
-      ]}
+      class:list={["artist-image", baseImageClasses, mobileImageClasses, "object-cover md:hidden"]}
     />
 
     <!-- Imágenes centrales -->
@@ -79,23 +72,13 @@ const mobileImageClasses = "w-5/6 md:w-2/5 object-cover";
       data-image-id={artworks[5].id}
       src={artworks[5].image}
       alt={`Image of ${artworks[5].name}`}
-      class:list={[
-        "artist-image",
-        baseImageClasses,
-        mobileImageClasses,
-        "md:hidden",
-      ]}
+      class:list={["artist-image", baseImageClasses, mobileImageClasses, "md:hidden"]}
     />
     <img
       data-image-id={artworks[6].id}
       src={artworks[6].image}
       alt={`Image of ${artworks[6].name}`}
-      class:list={[
-        "artist-image",
-        baseImageClasses,
-        mobileImageClasses,
-        "pr-4 md:hidden",
-      ]}
+      class:list={["artist-image", baseImageClasses, mobileImageClasses, "pr-4 md:hidden"]}
     />
   </article>
 
